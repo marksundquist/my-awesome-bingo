@@ -23,6 +23,30 @@
 **Types** (src/types/index.ts):
 - `BingoSquareData`, `BingoLine`, `GameState` - all exhaustively handled
 
+## Design System (D&D Fantasy Theme)
+
+**Color Palette**:
+- Burgundy accent (#8b2e2e) - buttons, borders
+- Parchment (#f4e8d0, #e8d7b5) - backgrounds
+- Forest green (#2d4a2d, #4a7c4a) - marked squares
+- Ember gold (#d4af37, #ff6b35) - victories, dragon accents
+- Dark wood (#3d2817) - text, borders
+
+**Typography**:
+- Display: MedievalSharp (Google Fonts) for titles
+- Body: Cinzel serif for readability
+- Apply with `style={{ fontFamily: 'MedievalSharp, serif' }}`
+
+**DragonLogo Component** (src/components/DragonLogo.tsx):
+- SVG heraldic crest, sizes: sm/md/lg
+- Hover animation: subtle scale pulse
+- Use in headers, modals, start screen
+
+**Parchment Texture**:
+- `.parchment` class for backgrounds (layered CSS gradients)
+- `.parchment-dark` for marked squares
+- No images—pure CSS for performance
+
 ## Code Patterns
 
 **Immutability**: Functions return new state, never mutate
