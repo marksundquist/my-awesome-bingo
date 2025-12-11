@@ -3,6 +3,10 @@
 # Add the changed file
 git add eslint.config.js
 
+# Push to a new branch
+$branchName = "feat/add-unused-vars-linting"
+git checkout -b $branchName
+
 # Commit the changes
 git commit -m "Add linting rule for unused variables
 
@@ -11,9 +15,7 @@ git commit -m "Add linting rule for unused variables
 - Helps catch potential bugs from unused variables
 - Maintains code quality standards"
 
-# Push to a new branch
-$branchName = "feat/add-unused-vars-linting"
-git checkout -b $branchName
+
 git push -u origin $branchName
 
 # Create PR (using GitHub CLI if available)
@@ -33,7 +35,15 @@ Relates to: Add linting rules for unused vars and awaits usage" `
                  --base main
     
     Write-Host "✅ PR created successfully!" -ForegroundColor Green
-} else {
+    # Dynamically determine repo owner and name from git remote
+    $remoteUrl = git remote get-url origin
+    if ($remoteUrl -match "github.com[:/](.+?)/(.+?)(\.git)?$") {
+        $repoOwner = $Matches[1]
+        $repoName = $Matches[2]
+        Write-Host "https://github.com/$repoOwner/$repoName/compare/main...$branchName" -ForegroundColor Cyan
+    } else {
+        Write-Host "Could not determine repository URL from git remote. Please construct the PR URL manually." -ForegroundColor Red
+    }
     Write-Host "⚠️  GitHub CLI (gh) not found. Please create PR manually at:" -ForegroundColor Yellow
     Write-Host "https://github.com/your-org/my-awesome-bingo/compare/main...$branchName" -ForegroundColor Cyan
 }
